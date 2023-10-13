@@ -1,50 +1,25 @@
+from transformers import MBartForConditionalGeneration, MBart50Tokenizer
 import streamlit as st
-import requests
 
-# Define Hugging Face API endpoint and your API key
-API_ENDPOINT = "https://api-inference.huggingface.co/models/facebook/m2m100_1.2B"
-API_KEY = "x"  # Replace with your Hugging Face API key
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
+def download_model():
+    model_name = "facebook/mbart-large-50-many-to-many-mmt"
+    model = MBartForConditionalGeneration.from_pretrained(model_name)
+    tokenizer = MBart50Tokenizer.from_pretrained(model_name)
+    return model, tokenizer
 
-# Define supported languages
-LANGUAGES = {
-    "Afrikaans": "af",
-    "English": "en",
-    "Spanish": "es",
-    "French": "fr",
-    # Add more languages as needed
-}
+st.title('Hindi to English Translator')
+text = st.text_area("Enter Text:", value='', height=None, max_chars=None, key=None)
+model, tokenizer = download_model()
 
-st.title("AI Translator with Hugging Face API")
-st.write("Translate text between different languages using the Hugging Face API.\n")
-
-user_input = st.text_area("Input text", height=200, max_chars=5120)
-source_lang = st.selectbox("Source language", options=list(LANGUAGES.keys()))
-target_lang = st.selectbox("Target language", options=list(LANGUAGES.keys()))
-
-if st.button("Run Translation"):
-    st.spinner("Translating...")
-
-    src_lang = LANGUAGES[source_lang]
-    trg_lang = LANGUAGES[target_lang]
-
-    payload = {
-        "inputs": user_input,
-        "source_language": src_lang,
-        "target_language": trg_lang,
-    }
-
-    headers = {"Authorization": f"Bearer {API_KEY}"}
-
-    try:
-        response = requests.post(API_ENDPOINT, headers=headers, json=payload)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        translated_text = response.json()["translation_text"]
-        st.success("Translation Successful")
-        st.write("Translated Text:")
-        st.write(translated_text)
-    except requests.exceptions.RequestException as e:
-        st.error(f"Translation failed: {str(e)}")
-
-# Run the Streamlit app
-if __name__ == '__main__':
-    st.run()
+if st.button('Translate to English'):
+    if text == '':
+        st.write('Please enter Hindi text for translation') 
+    else: 
+        model_name = "facebook/mbart-large-50-many-to-many-mmt"
+        tokenizer.src_lang = "hi_IN"
+        encoded_hindi_text = tokenizer(text, return_tensors="pt")
+        generated_tokens = model.generate(**encoded_hindi_text, forced_bos_token_id=tokenizer.lang_code_to_id["en_XX"])
+        out = tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)
+        st.write('', str(out).strip('][\''))
+else: pass
