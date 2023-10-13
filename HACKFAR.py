@@ -3,7 +3,7 @@ import requests
 
 # Define Hugging Face API endpoint and your API key
 API_ENDPOINT = "https://api-inference.huggingface.co/models/facebook/m2m100_1.2B"
-API_KEY = "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"  # Replace with your Hugging Face API key
+API_KEY = "x"  # Replace with your Hugging Face API key
 
 # Define supported languages
 LANGUAGES = {
