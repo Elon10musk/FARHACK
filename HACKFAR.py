@@ -54,6 +54,50 @@ import os
 from gtts import gTTS
 from googletrans import Translator
 
+st.set_page_config(page_title="EC_HACKATHON-2023")
+st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
+st.markdown("""
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: rgb(121, 37, 199);">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img 
+      src= 
+"https://media.istockphoto.com/id/1202558173/vector/translate-science-gradient-color-paper-cut-style-icon-design.jpg?s=612x612&w=0&k=20&c=55DCFw9pCp5HW0--tqo_wjaxKoh1FKLo9hY4OJzcv-A=" 
+      alt="" width="150" 
+      height="45"></a></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Project</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+""", unsafe_allow_html=True)
+st.title("Translation Bot")
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            footer:after {content:'Made with ❤️ by ADITYA PURI';visibility: visible;display: block;}
+            .st-emotion-cache-cio0dv {
+            padding-left: 20%;
+            padding-right: 1rem;
+            }
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 try:
     os.mkdir("temp")
 except:
