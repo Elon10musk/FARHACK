@@ -102,7 +102,6 @@ try:
     os.mkdir("temp")
 except:
     pass
-st.title("Text to speech")
 translator = Translator()
 
 text = st.text_input("Enter text")
@@ -155,7 +154,7 @@ english_accent = st.selectbox(
 )
 
 if english_accent == "Default":
-    tld = "com"
+    tld = "co.in"
 elif english_accent == "India":
     tld = "co.in"
 
