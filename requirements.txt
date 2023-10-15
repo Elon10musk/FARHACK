@@ -3,3 +3,4 @@ gTTS==2.2.2
 googletrans==3.1.0a0
 transformers == 4.34.0
 Python-IO == 0.3
+pytorch == 1.0.2
