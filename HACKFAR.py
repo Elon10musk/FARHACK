@@ -62,7 +62,7 @@ st.markdown("""
     <a class="navbar-brand" href="#"><img 
       src= 
 "https://media.istockphoto.com/id/1202558173/vector/translate-science-gradient-color-paper-cut-style-icon-design.jpg?s=612x612&w=0&k=20&c=55DCFw9pCp5HW0--tqo_wjaxKoh1FKLo9hY4OJzcv-A=" 
-      alt="" width="150" 
+      alt="" width="50" 
       height="45"></a></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
