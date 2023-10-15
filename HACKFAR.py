@@ -98,6 +98,117 @@ hide_st_style = """
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
+LANGUAGES = {
+    'afrikaans': 'af',
+    'albanian': 'sq',
+    'amharic': 'am',
+    'arabic': 'ar',
+    'armenian': 'hy',
+    'azerbaijani': 'az',
+    'basque': 'eu',
+    'belarusian': 'be',
+    'bengali': 'bn',
+    'bosnian': 'bs',
+    'bulgarian': 'bg',
+    'catalan': 'ca',
+    'cebuano': 'ceb',
+    'chichewa': 'ny',
+    'chinese (simplified)': 'zh-cn',
+    'chinese (traditional)': 'zh-tw',
+    'corsican': 'co',
+    'croatian': 'hr',
+    'czech': 'cs',
+    'danish': 'da',
+    'dutch': 'nl',
+    'english': 'en',
+    'esperanto': 'eo',
+    'estonian': 'et',
+    'filipino': 'tl',
+    'finnish': 'fi',
+    'french': 'fr',
+    'frisian': 'fy',
+    'galician': 'gl',
+    'georgian': 'ka',
+    'german': 'de',
+    'greek': 'el',
+    'gujarati': 'gu',
+    'haitian creole': 'ht',
+    'hausa': 'ha',
+    'hawaiian': 'haw',
+    'hebrew': 'iw',
+    'hebrew': 'he',
+    'hindi': 'hi',
+    'hmong': 'hmn',
+    'hungarian': 'hu',
+    'icelandic': 'is',
+    'igbo': 'ig',
+    'indonesian': 'id',
+    'irish': 'ga',
+    'italian': 'it',
+    'japanese': 'ja',
+    'javanese': 'jw',
+    'kannada': 'kn',
+    'kazakh': 'kk',
+    'khmer': 'km',
+    'korean': 'ko',
+    'kurdish (kurmanji)': 'ku',
+    'kyrgyz': 'ky',
+    'lao': 'lo',
+    'latin': 'la',
+    'latvian': 'lv',
+    'lithuanian': 'lt',
+    'luxembourgish': 'lb',
+    'macedonian': 'mk',
+    'malagasy': 'mg',
+    'malay': 'ms',
+    'malayalam': 'ml',
+    'maltese': 'mt',
+    'maori': 'mi',
+    'marathi': 'mr',
+    'mongolian': 'mn',
+    'myanmar (burmese)': 'my',
+    'nepali': 'ne',
+    'norwegian': 'no',
+    'odia': 'or',
+    'pashto': 'ps',
+    'persian': 'fa',
+    'polish': 'pl',
+    'portuguese': 'pt',
+    'punjabi': 'pa',
+    'romanian': 'ro',
+    'russian': 'ru',
+    'samoan': 'sm',
+    'scots gaelic': 'gd',
+    'serbian': 'sr',
+    'sesotho': 'st',
+    'shona': 'sn',
+    'sindhi': 'sd',
+    'sinhala': 'si',
+    'slovak': 'sk',
+    'slovenian': 'sl',
+    'somali': 'so',
+    'spanish': 'es',
+    'sundanese': 'su',
+    'swahili': 'sw',
+    'swedish': 'sv',
+    'tajik': 'tg',
+    'tamil': 'ta',
+    'telugu': 'te',
+    'thai': 'th',
+    'turkish': 'tr',
+    'ukrainian': 'uk',
+    'urdu': 'ur',
+    'uyghur': 'ug',
+    'uzbek': 'uz',
+    'vietnamese': 'vi',
+    'welsh': 'cy',
+    'xhosa': 'xh',
+    'yiddish': 'yi',
+    'yoruba': 'yo',
+    'zulu': 'zu',
+}
+
+
 try:
     os.mkdir("temp")
 except:
@@ -105,39 +216,26 @@ except:
 translator = Translator()
 
 text = st.text_input("Enter text")
+
+# Create a list of language names from the LANGUAGES dictionary
+language_names = list(LANGUAGES.keys())
+
 in_lang = st.selectbox(
     "Select your input language",
-    ("English", "Hindi", "Bengali", "korean", "Chinese", "Japanese"),
+    language_names
 )
-if in_lang == "English":
-    input_language = "en"
-elif in_lang == "Hindi":
-    input_language = "hi"
-elif in_lang == "Bengali":
-    input_language = "bn"
-elif in_lang == "korean":
-    input_language = "ko"
-elif in_lang == "Chinese":
-    input_language = "zh-cn"
-elif in_lang == "Japanese":
-    input_language = "ja"
+
+# Use the selected language name to get the language code from the LANGUAGES dictionary
+input_language = LANGUAGES.get(in_lang, "en")  # Default to English if not found
 
 out_lang = st.selectbox(
     "Select your output language",
-    ("English", "Hindi", "Bengali", "korean", "Chinese", "Japanese"),
+    language_names
 )
-if out_lang == "English":
-    output_language = "en"
-elif out_lang == "Hindi":
-    output_language = "hi"
-elif out_lang == "Bengali":
-    output_language = "bn"
-elif out_lang == "korean":
-    output_language = "ko"
-elif out_lang == "Chinese":
-    output_language = "zh-cn"
-elif out_lang == "Japanese":
-    output_language = "ja"
+
+# Use the selected language name to get the language code from the LANGUAGES dictionary
+output_language = LANGUAGES.get(out_lang, "en")  # Default to English if not found
+
 
 english_accent = st.selectbox(
     "Select your english accent",
